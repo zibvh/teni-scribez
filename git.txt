@@ -1,0 +1,286 @@
+Git Cheat Sheet 🚀
+📁 Basic Setup
+bash
+# Initialize a new repo
+git init
+
+# Clone an existing repo
+git clone <repo-url>
+
+# Check current status
+git status
+
+# Show remote repositories
+git remote -v
+
+# Add remote origin
+git remote add origin <repo-url>
+📤 Staging & Committing
+bash
+# Stage specific file
+git add <filename>
+
+# Stage all files
+git add .
+
+# Stage with patch (choose changes)
+git add -p
+
+# Commit with message
+git commit -m "Your message"
+
+# Stage and commit in one line
+git commit -am "Your message"
+
+# Edit last commit (add changes to previous commit)
+git commit --amend -m "New message"
+
+# Unstage file (keep changes)
+git reset <filename>
+
+# Unstage all files
+git reset
+📚 Branch Management
+bash
+# List all branches
+git branch
+
+# Create new branch
+git branch <branch-name>
+
+# Switch to branch
+git checkout <branch-name>
+
+# Create and switch to new branch
+git checkout -b <branch-name>
+
+# Delete branch (local)
+git branch -d <branch-name>
+
+# Delete branch (force)
+git branch -D <branch-name>
+
+# Rename current branch
+git branch -m <new-name>
+
+# List remote branches
+git branch -r
+🔄 Merging & Rebasing
+bash
+# Merge branch into current
+git merge <branch-name>
+
+# Rebase current branch onto another
+git rebase <branch-name>
+
+# Interactive rebase (last 3 commits)
+git rebase -i HEAD~3
+
+# Abort a rebase
+git rebase --abort
+
+# Continue after resolving conflicts
+git rebase --continue
+
+# Merge with fast-forward only
+git merge --ff-only <branch-name>
+📥 Pull & Push
+bash
+# Pull latest changes
+git pull origin <branch-name>
+
+# Pull with rebase instead of merge
+git pull --rebase origin <branch-name>
+
+# Push to remote
+git push origin <branch-name>
+
+# Force push (use with caution!)
+git push -f origin <branch-name>
+
+# Push and set upstream
+git push -u origin <branch-name>
+
+# Push all tags
+git push --tags
+⏱️ Time Travel & History
+bash
+# View commit history
+git log
+
+# One-line commit history
+git log --oneline
+
+# Show changes in commits
+git log -p
+
+# Show specific file history
+git log <filename>
+
+# Reset to previous commit (keep changes)
+git reset --soft HEAD~1
+
+# Reset to previous commit (discard changes)
+git reset --hard HEAD~1
+
+# Reset to specific commit
+git reset --hard <commit-hash>
+
+# Revert a commit (creates new undo commit)
+git revert <commit-hash>
+🗑️ Cleaning Up
+bash
+# Remove untracked files
+git clean -n  # dry run
+git clean -f  # force remove
+
+# Remove untracked files and directories
+git clean -fd
+
+# Prune remote branches
+git fetch --prune
+🔍 Finding Things
+bash
+# Search commits by message
+git log --grep="search term"
+
+# Find which commit introduced a bug
+git bisect start
+git bisect bad
+git bisect good <commit-hash>
+
+# Search code in all commits
+git grep "search term" $(git rev-list --all)
+
+# Show who changed a file
+git blame <filename>
+🏷️ Tags
+bash
+# Create tag
+git tag <tag-name>
+
+# Create annotated tag
+git tag -a <tag-name> -m "Tag message"
+
+# List tags
+git tag
+
+# Delete tag
+git tag -d <tag-name>
+
+# Delete remote tag
+git push origin --delete <tag-name>
+📦 Stashing
+bash
+# Stash changes
+git stash
+
+# Stash with message
+git stash save "message"
+
+# List stashes
+git stash list
+
+# Apply last stash
+git stash apply
+
+# Apply specific stash
+git stash apply stash@{n}
+
+# Pop stash (apply and remove)
+git stash pop
+
+# Drop specific stash
+git stash drop stash@{n}
+
+# Clear all stashes
+git stash clear
+🛠️ Configuration
+bash
+# Set global username
+git config --global user.name "Your Name"
+
+# Set global email
+git config --global user.email "your@email.com"
+
+# Set default branch name
+git config --global init.defaultBranch main
+
+# Set default editor
+git config --global core.editor "code --wait"
+
+# List all configs
+git config --list
+
+# Set aliases
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.st status
+🌊 Netlify-Specific Flow
+bash
+# Your typical workflow for your site:
+git add .
+git commit -m "Update website"
+git push origin main
+# Netlify automatically deploys from main branch
+💡 Pro Tips
+bash
+# Visual history graph
+git log --oneline --graph --all
+
+# See what's changed
+git diff
+
+# See staged changes
+git diff --staged
+
+# See changes between branches
+git diff <branch1>..<branch2>
+
+# Undo last commit but keep changes staged
+git reset --soft HEAD~1
+
+# Undo last commit and unstage changes
+git reset HEAD~1
+
+# Fix commit author on last commit
+git commit --amend --author="Name <email>"
+🎯 Quick Reference Card
+text
+# Day-to-day workflow:
+git status          # Check changes
+git add .          # Stage files
+git commit -m "msg" # Commit
+git push           # Push to remote
+
+# Branch workflow:
+git checkout -b feature  # Create feature branch
+# Make changes...
+git add .
+git commit -m "Add feature"
+git checkout main        # Switch back
+git merge feature       # Merge feature
+
+# Oops, I messed up:
+git stash              # Save work temporarily
+git checkout -- .      # Discard local changes
+git reset --hard HEAD  # Reset to last commit
+🚨 Emergency Commands
+bash
+# Recover deleted branch
+git reflog
+git checkout -b <branch-name> <hash-from-reflog>
+
+# Undo last commit (public)
+git revert HEAD
+
+# Undo multiple commits
+git revert HEAD~3..HEAD
+
+# Delete local branches already merged
+git branch --merged | grep -v "\*" | xargs -n 1 git branch -d
+Save this cheat sheet as git-cheatsheet.md in your project!
+
+Want me to create a visual flowchart of your Git workflow or explain any specific commands in more detail?
+
