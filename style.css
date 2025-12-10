@@ -1003,3 +1003,302 @@ a:hover {
 .hidden {
     display: none;
 }
+
+/* Thank You Page Styles */
+.thank-you-container {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-xxl) 0;
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.05) 0%, rgba(46, 139, 87, 0.05) 100%);
+}
+
+.thank-you-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--space-xl);
+    background-color: var(--color-white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+}
+
+.thank-you-icon {
+    font-size: 5rem;
+    color: var(--color-secondary);
+    margin-bottom: var(--space-lg);
+    animation: bounce 1s ease infinite alternate;
+}
+
+.thank-you-icon i {
+    filter: drop-shadow(0 4px 6px rgba(46, 139, 87, 0.3));
+}
+
+.page-title {
+    color: var(--color-primary);
+    margin-bottom: var(--space-lg);
+    font-size: 2.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--color-accent);
+    border-radius: 2px;
+}
+
+.thank-you-message {
+    margin-bottom: var(--space-xl);
+    padding: var(--space-md);
+    background-color: rgba(139, 69, 19, 0.03);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-secondary);
+}
+
+.thank-you-message p {
+    margin-bottom: var(--space-sm);
+    line-height: 1.6;
+}
+
+.thank-you-message p:first-child {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.thank-you-message p:not(:first-child) {
+    color: var(--color-gray);
+}
+
+.thank-you-note {
+    margin-top: var(--space-md) !important;
+    padding-top: var(--space-md);
+    border-top: 2px dotted var(--color-primary-light);
+    color: var(--color-primary) !important;
+    font-style: italic;
+}
+
+.thank-you-note i {
+    margin-right: var(--space-xs);
+}
+
+.thank-you-actions {
+    margin-top: var(--space-xl);
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.thank-you-actions .btn {
+    min-width: 160px;
+    padding: var(--space-sm) var(--space-md);
+    font-weight: 600;
+}
+
+.thank-you-social {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-gray-light);
+}
+
+.thank-you-social p {
+    color: var(--color-gray);
+    margin-bottom: var(--space-md);
+    font-size: 1.1rem;
+}
+
+/* Animations */
+@keyframes bounce {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.thank-you-content {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.thank-you-icon {
+    animation: bounce 2s ease-in-out infinite;
+}
+
+/* Confetti effect (optional) */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-secondary);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+/* Dark Mode Styles */
+.dark-mode .thank-you-container {
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(46, 139, 87, 0.1) 100%);
+}
+
+.dark-mode .thank-you-content {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+}
+
+.dark-mode .thank-you-icon {
+    color: var(--color-secondary-light);
+}
+
+.dark-mode .page-title {
+    color: #e0e0e0;
+}
+
+.dark-mode .thank-you-message {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left-color: var(--color-secondary-light);
+}
+
+.dark-mode .thank-you-message p:first-child {
+    color: #e0e0e0;
+}
+
+.dark-mode .thank-you-message p:not(:first-child) {
+    color: #aaa;
+}
+
+.dark-mode .thank-you-note {
+    color: var(--color-secondary-light) !important;
+    border-top-color: var(--color-primary-light);
+}
+
+.dark-mode .thank-you-social {
+    border-top-color: #444;
+}
+
+.dark-mode .thank-you-social p {
+    color: #aaa;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .thank-you-container {
+        padding: var(--space-xl) var(--space-md);
+        min-height: 60vh;
+    }
+    
+    .thank-you-content {
+        padding: var(--space-lg);
+        margin: 0 var(--space-sm);
+    }
+    
+    .thank-you-icon {
+        font-size: 4rem;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .thank-you-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .thank-you-actions .btn {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .thank-you-content {
+        padding: var(--space-md);
+    }
+    
+    .thank-you-icon {
+        font-size: 3rem;
+    }
+    
+    .page-title {
+        font-size: 1.75rem;
+    }
+    
+    .thank-you-message {
+        padding: var(--space-sm);
+    }
+    
+    .thank-you-message p:first-child {
+        font-size: 1.1rem;
+    }
+}
+
+/* Success Animation */
+.form-success-animation {
+    position: relative;
+    overflow: hidden;
+}
+
+.form-success-animation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Social Icons Hover Effect */
+.thank-you-social .social-links a {
+    transition: all var(--transition-normal);
+}
+
+.thank-you-social .social-links a:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Enhancements */
+.thank-you-actions .btn-primary {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-light) 100%);
+    border: none;
+}
+
+.thank-you-actions .btn-outline {
+    border-width: 2px;
+}
+
+.thank-you-actions .btn-outline:hover {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-light) 100%);
+    border-color: transparent;
+}
