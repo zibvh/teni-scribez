@@ -15,3 +15,7 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Form settings (optional but helpful)
+[context.production.environment]
+  FORCE_SSL = "true"

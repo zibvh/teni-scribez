@@ -1,3 +1,9 @@
+After creating contact.html
+git add contact.html
+git commit -m "Add contact page with form"
+git push
+
+#################################
 Git Cheat Sheet 🚀
 📁 Basic Setup
 bash

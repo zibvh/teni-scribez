@@ -33,21 +33,17 @@ document.addEventListener('DOMContentLoaded', function() {
         themeToggle.addEventListener('click', toggleDarkMode);
     }
     
-    // Initialize forms - NEW: Handle both newsletter and contact forms
+    // Initialize forms
     const newsletterForm = document.querySelector('form[name="newsletter"]');
     const contactForm = document.querySelector('form[name="contact"]');
     
-    // Initialize newsletter form if it exists
+    // Initialize newsletter form
     if (newsletterForm) {
-        // Remove any existing event listeners to prevent duplicates
-        newsletterForm.removeEventListener('submit', handleNewsletterSubmit);
         newsletterForm.addEventListener('submit', handleNewsletterSubmit);
     }
     
-    // Initialize contact form if it exists
+    // Initialize contact form
     if (contactForm) {
-        // Remove any existing event listeners to prevent duplicates
-        contactForm.removeEventListener('submit', handleContactSubmit);
         contactForm.addEventListener('submit', handleContactSubmit);
     }
     
@@ -115,99 +111,96 @@ function disableDarkMode() {
     localStorage.setItem('theme', 'light');
 }
 
-// Newsletter Form Handler - UPDATED
+// Newsletter Form Handler
 function handleNewsletterSubmit(e) {
     e.preventDefault();
     
-    // Get form data
     const form = e.target;
-    const formData = new FormData(form);
-    
-    // Show loading state
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.innerHTML;
+    
+    // Show loading state
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
     submitBtn.disabled = true;
     
-    // For demo/fallback purposes
-    console.log('Newsletter signup data:', Object.fromEntries(formData));
+    // Allow Netlify to handle the submission
+    // We'll just show a loading state and let it proceed normally
     
-    // In a real Netlify deployment, the form will submit automatically
-    // We're just adding some visual feedback here
-    
-    // Simulate submission delay for better UX
+    // After a short delay, show success message
     setTimeout(() => {
-        // Reset button
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        
-        // Show success message if we have one on the page
-        const successMessage = form.nextElementSibling;
-        if (successMessage && successMessage.classList.contains('form-success')) {
-            form.style.display = 'none';
-            successMessage.style.display = 'flex';
-        }
-        
-        // Clear form
-        form.reset();
-        
-        // Log for debugging
-        console.log('Newsletter subscription processed');
-        
-        // Netlify will handle the actual submission
-        // No need to prevent default since Netlify forms work with normal form submission
-        
-    }, 1500);
-}
-
-// Contact Form Handler - NEW FUNCTION
-function handleContactSubmit(e) {
-    e.preventDefault();
-    
-    // Get form data
-    const form = e.target;
-    const formData = new FormData(form);
-    
-    // Show loading state
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    submitBtn.disabled = true;
-    
-    // For demo/fallback purposes
-    console.log('Contact form data:', Object.fromEntries(formData));
-    
-    // Simulate submission delay for better UX
-    setTimeout(() => {
-        // Reset button
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        
-        // Create success message if not present
-        let successMessage = form.nextElementSibling;
-        if (!successMessage || !successMessage.classList.contains('form-success')) {
+        // Get or create success message
+        let successMessage = document.getElementById('newsletterSuccess');
+        if (!successMessage) {
+            // Create success message if it doesn't exist
             successMessage = document.createElement('div');
+            successMessage.id = 'newsletterSuccess';
             successMessage.className = 'form-success';
             successMessage.innerHTML = `
                 <i class="fas fa-check-circle"></i>
-                <p>Thank you for your message! I'll get back to you soon.</p>
+                <p>Thank you for subscribing! Please check your email to confirm.</p>
             `;
             form.parentNode.insertBefore(successMessage, form.nextSibling);
         }
         
         // Show success message
         successMessage.style.display = 'flex';
+        form.style.display = 'none';
         
-        // Clear form
-        form.reset();
+        // Reset button (though form is hidden)
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
         
-        // Log for debugging
-        console.log('Contact form submission processed');
-        
-        // Scroll to show success message
+        // Scroll to success message
         successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
         
-    }, 1500);
+    }, 1000);
+}
+
+// Contact Form Handler
+function handleContactSubmit(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    
+    // Show loading state
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    submitBtn.disabled = true;
+    
+    // Allow Netlify to handle the submission
+    // We'll just show a loading state and let it proceed normally
+    
+    // After a short delay, show success message
+    setTimeout(() => {
+        // Get or create success message
+        let successMessage = document.getElementById('contactSuccess');
+        if (!successMessage) {
+            // Create success message if it doesn't exist
+            successMessage = document.createElement('div');
+            successMessage.id = 'contactSuccess';
+            successMessage.className = 'form-success';
+            successMessage.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <p>Thank you for your message! I'll get back to you soon.</p>
+            `;
+            // Insert after form
+            const formContainer = form.parentNode;
+            formContainer.insertBefore(successMessage, form.nextSibling);
+        }
+        
+        // Show success message
+        successMessage.style.display = 'flex';
+        form.style.display = 'none';
+        
+        // Reset button (though form is hidden)
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        
+        // Scroll to success message
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+    }, 1000);
 }
 
 // Video Share Functionality
@@ -302,7 +295,7 @@ function handleHeaderScroll() {
     }
 }
 
-// Add CSS for scrolled header and other dynamic styles
+// Add CSS for dynamic styles
 const style = document.createElement('style');
 style.textContent = `
     .header.scrolled {
