@@ -360,3 +360,42 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+// Newsletter Form Handler - SIMPLIFIED
+function handleNewsletterSubmit(e) {
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    
+    // Show loading state
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+    submitBtn.disabled = true;
+    
+    // Let Netlify handle the submission naturally
+    // It will redirect to /thank-you?form=newsletter
+    
+    // Keep button disabled but show loading state
+    setTimeout(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }, 3000);
+}
+
+// Contact Form Handler - SIMPLIFIED  
+function handleContactSubmit(e) {
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    
+    // Show loading state
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    submitBtn.disabled = true;
+    
+    // Let Netlify handle the submission naturally
+    // It will redirect to /thank-you?form=contact
+    
+    // Keep button disabled but show loading state
+    setTimeout(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }, 3000);
+}

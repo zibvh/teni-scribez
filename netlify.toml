@@ -1,21 +1,19 @@
 [build]
   publish = "."
 
-# Redirects
+# Form settings
 [[redirects]]
   from = "/thank-you"
   to = "/thank-you.html"
   status = 200
 
-# Enable form detection
+# Override form success paths
+[context.production.environment]
+  NETLIFY_FORM_SUCCESS_PATH = "/thank-you"
+
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-
-# Form settings (optional but helpful)
-[context.production.environment]
-  FORCE_SSL = "true"
