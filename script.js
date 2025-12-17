@@ -1,4 +1,3 @@
-// Main JavaScript for Teni Scribes Website
 
 // DOM Elements
 const menuToggle = document.getElementById('menuToggle');
@@ -33,24 +32,24 @@ document.addEventListener('DOMContentLoaded', function() {
         themeToggle.addEventListener('click', toggleDarkMode);
     }
     
-    // Initialize forms
-    const newsletterForm = document.querySelector('form[name="newsletter"]');
-    const contactForm = document.querySelector('form[name="contact"]');
+    // // Initialize forms
+    // const newsletterForm = document.querySelector('form[name="newsletter"]');
+    // const contactForm = document.querySelector('form[name="contact"]');
     
-    // Initialize newsletter form
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', handleNewsletterSubmit);
-    }
+    // // Initialize newsletter form
+    // if (newsletterForm) {
+    //     newsletterForm.addEventListener('submit', handleNewsletterSubmit);
+    // }
     
-    // Initialize contact form
-    if (contactForm) {
-        contactForm.addEventListener('submit', handleContactSubmit);
-    }
+    // // Initialize contact form
+    // if (contactForm) {
+    //     contactForm.addEventListener('submit', handleContactSubmit);
+    // }
     
-    // Initialize video share button
-    if (videoShareBtn) {
-        videoShareBtn.addEventListener('click', shareVideo);
-    }
+    // // Initialize video share button
+    // if (videoShareBtn) {
+    //     videoShareBtn.addEventListener('click', shareVideo);
+    // }
     
     // Close mobile menu when clicking a link
     const navLinks = document.querySelectorAll('.nav-link');
@@ -111,97 +110,97 @@ function disableDarkMode() {
     localStorage.setItem('theme', 'light');
 }
 
-// Newsletter Form Handler
-function handleNewsletterSubmit(e) {
-    e.preventDefault();
+// // Newsletter Form Handler
+// function handleNewsletterSubmit(e) {
+//     e.preventDefault();
     
-    const form = e.target;
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
+//     const form = e.target;
+//     const submitBtn = form.querySelector('button[type="submit"]');
+//     const originalText = submitBtn.innerHTML;
     
-    // Show loading state
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
-    submitBtn.disabled = true;
+//     // Show loading state
+//     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+//     submitBtn.disabled = true;
     
-    // Allow Netlify to handle the submission
-    // We'll just show a loading state and let it proceed normally
+//     // Allow Netlify to handle the submission
+//     // We'll just show a loading state and let it proceed normally
     
-    // After a short delay, show success message
-    setTimeout(() => {
-        // Get or create success message
-        let successMessage = document.getElementById('newsletterSuccess');
-        if (!successMessage) {
-            // Create success message if it doesn't exist
-            successMessage = document.createElement('div');
-            successMessage.id = 'newsletterSuccess';
-            successMessage.className = 'form-success';
-            successMessage.innerHTML = `
-                <i class="fas fa-check-circle"></i>
-                <p>Thank you for subscribing! Please check your email to confirm.</p>
-            `;
-            form.parentNode.insertBefore(successMessage, form.nextSibling);
-        }
+//     // After a short delay, show success message
+//     setTimeout(() => {
+//         // Get or create success message
+//         let successMessage = document.getElementById('newsletterSuccess');
+//         if (!successMessage) {
+//             // Create success message if it doesn't exist
+//             successMessage = document.createElement('div');
+//             successMessage.id = 'newsletterSuccess';
+//             successMessage.className = 'form-success';
+//             successMessage.innerHTML = `
+//                 <i class="fas fa-check-circle"></i>
+//                 <p>Thank you for subscribing! Please check your email to confirm.</p>
+//             `;
+//             form.parentNode.insertBefore(successMessage, form.nextSibling);
+//         }
         
-        // Show success message
-        successMessage.style.display = 'flex';
-        form.style.display = 'none';
+//         // Show success message
+//         successMessage.style.display = 'flex';
+//         form.style.display = 'none';
         
-        // Reset button (though form is hidden)
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
+//         // Reset button (though form is hidden)
+//         submitBtn.innerHTML = originalText;
+//         submitBtn.disabled = false;
         
-        // Scroll to success message
-        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+//         // Scroll to success message
+//         successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
         
-    }, 1000);
-}
+//     }, 1000);
+// }
 
-// Contact Form Handler
-function handleContactSubmit(e) {
-    e.preventDefault();
+// // Contact Form Handler
+// function handleContactSubmit(e) {
+//     e.preventDefault();
     
-    const form = e.target;
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
+//     const form = e.target;
+//     const submitBtn = form.querySelector('button[type="submit"]');
+//     const originalText = submitBtn.innerHTML;
     
-    // Show loading state
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    submitBtn.disabled = true;
+//     // Show loading state
+//     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+//     submitBtn.disabled = true;
     
-    // Allow Netlify to handle the submission
-    // We'll just show a loading state and let it proceed normally
+//     // Allow Netlify to handle the submission
+//     // We'll just show a loading state and let it proceed normally
     
-    // After a short delay, show success message
-    setTimeout(() => {
-        // Get or create success message
-        let successMessage = document.getElementById('contactSuccess');
-        if (!successMessage) {
-            // Create success message if it doesn't exist
-            successMessage = document.createElement('div');
-            successMessage.id = 'contactSuccess';
-            successMessage.className = 'form-success';
-            successMessage.innerHTML = `
-                <i class="fas fa-check-circle"></i>
-                <p>Thank you for your message! I'll get back to you soon.</p>
-            `;
-            // Insert after form
-            const formContainer = form.parentNode;
-            formContainer.insertBefore(successMessage, form.nextSibling);
-        }
+//     // After a short delay, show success message
+//     setTimeout(() => {
+//         // Get or create success message
+//         let successMessage = document.getElementById('contactSuccess');
+//         if (!successMessage) {
+//             // Create success message if it doesn't exist
+//             successMessage = document.createElement('div');
+//             successMessage.id = 'contactSuccess';
+//             successMessage.className = 'form-success';
+//             successMessage.innerHTML = `
+//                 <i class="fas fa-check-circle"></i>
+//                 <p>Thank you for your message! I'll get back to you soon.</p>
+//             `;
+//             // Insert after form
+//             const formContainer = form.parentNode;
+//             formContainer.insertBefore(successMessage, form.nextSibling);
+//         }
         
-        // Show success message
-        successMessage.style.display = 'flex';
-        form.style.display = 'none';
+//         // Show success message
+//         successMessage.style.display = 'flex';
+//         form.style.display = 'none';
         
-        // Reset button (though form is hidden)
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
+//         // Reset button (though form is hidden)
+//         submitBtn.innerHTML = originalText;
+//         submitBtn.disabled = false;
         
-        // Scroll to success message
-        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+//         // Scroll to success message
+//         successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
         
-    }, 1000);
-}
+//     }, 1000);
+// }
 
 // Video Share Functionality
 function shareVideo() {
@@ -359,43 +358,43 @@ style.textContent = `
         animation: fadeIn 0.5s ease;
     }
 `;
-document.head.appendChild(style);
-// Newsletter Form Handler - SIMPLIFIED
-function handleNewsletterSubmit(e) {
-    const form = e.target;
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
+// document.head.appendChild(style);
+// // Newsletter Form Handler - SIMPLIFIED
+// function handleNewsletterSubmit(e) {
+//     const form = e.target;
+//     const submitBtn = form.querySelector('button[type="submit"]');
+//     const originalText = submitBtn.innerHTML;
     
-    // Show loading state
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
-    submitBtn.disabled = true;
+//     // Show loading state
+//     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+//     submitBtn.disabled = true;
     
-    // Let Netlify handle the submission naturally
-    // It will redirect to /thank-you?form=newsletter
+//     // Let Netlify handle the submission naturally
+//     // It will redirect to /thank-you?form=newsletter
     
-    // Keep button disabled but show loading state
-    setTimeout(() => {
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-    }, 3000);
-}
+//     // Keep button disabled but show loading state
+//     setTimeout(() => {
+//         submitBtn.innerHTML = originalText;
+//         submitBtn.disabled = false;
+//     }, 3000);
+// }
 
-// Contact Form Handler - SIMPLIFIED  
-function handleContactSubmit(e) {
-    const form = e.target;
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
+// // Contact Form Handler - SIMPLIFIED  
+// function handleContactSubmit(e) {
+//     const form = e.target;
+//     const submitBtn = form.querySelector('button[type="submit"]');
+//     const originalText = submitBtn.innerHTML;
     
-    // Show loading state
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    submitBtn.disabled = true;
+//     // Show loading state
+//     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+//     submitBtn.disabled = true;
     
-    // Let Netlify handle the submission naturally
-    // It will redirect to /thank-you?form=contact
+//     // Let Netlify handle the submission naturally
+//     // It will redirect to /thank-you?form=contact
     
-    // Keep button disabled but show loading state
-    setTimeout(() => {
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-    }, 3000);
-}
+//     // Keep button disabled but show loading state
+//     setTimeout(() => {
+//         submitBtn.innerHTML = originalText;
+//         submitBtn.disabled = false;
+//     }, 3000);
+// }
