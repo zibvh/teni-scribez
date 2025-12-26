@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // If on videos page, fetch playlists
-    if (window.location.pathname.includes('videos.html')) {
+    if (window.location.pathname.includes('<!-videos.html->')) {
         initializeVideoLibrary();
     }
 });
@@ -148,7 +148,7 @@ function onPlayerReady(event) {
     console.log('YouTube player ready');
 }
 
-// Initialize Video Library Page
+// Initialize <!-video library-> Page
 function initializeVideoLibrary() {
     // Create video categories
     createVideoCategories();
